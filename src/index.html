@@ -2,13 +2,44 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Caesar Cipher</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width">
+    <title>CipherCode</title>
+    <link rel="shortcut icon" href="ccolor.png">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="script.js"></script>
   </head>
   <body>
-    <div id="root">
-      <h1>Hello world!2</h1>
+    <!-- PRINCIPAL -->
+   <div id="principal">
+    <img src="cblanco.png" style="width: 50px;">
+  <h1>CipherCode</h1>
+  <h3>Cifra o decifra un mensaje <br> Utilizando cifrado cesar</h3>
+    <div>
+      <button class=boton id="boton1" onclick="MENSAJE(0)"> (DE)CIFRA</button>
+    <br>
     </div>
-    <script src="index.js" type="module"></script>
+  
+      <!-- PANTALLA2 -->
+    <section id="cifrado">
+      <br>
+        <h4>Ingresa el texto que deseas cifrar</h4>
+        <form id="textocifrado" autocomplete="off">
+          <input id="input-original" spellcheck="false" placeholder="Ingrese su mensaje" type="text" name="text">
+        </form>
+        <h4>Ingresa el texto que deseas decifrar</h4>
+        <form id="textocifrado" autocomplete="off">
+          <input id="input-original" spellcheck="false" placeholder="Ingrese su mensaje" type="text" name="text">
+        </form>
+    <div id="resultado"></div>
+    <div class="rango">
+      <input id="rango" type="range" value="5" min="1" max="20" oninput="this.nextElemntSibling.value = this.value">
+    <output>5</output>
+    </div>
+    <div>
+      <button class=boton id="boton2" onclick="CIFRA(1)"> CIFRA</button>
+      <button class=boton id="boton3" onclick="DECIFRA(12)"> DECIFRA</button>
+    </div>
+    </section>
+    <script src="script.js"></script>
   </body>
 </html>
