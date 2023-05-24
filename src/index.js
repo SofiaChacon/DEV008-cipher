@@ -19,20 +19,16 @@ function inicio(){
 
 function cifrar(texto, desplazamiento) {
     if (!texto) 
-        return ''; // No se recomienda que haya más de un punto de salida de la función
+        return '';
     const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    //Si aceptamos desplazamientos negativos, necesitamos hacerlo dos veces. Si no, sería:
-    //desplazamiento = desplazamiento % 26;
     desplazamiento = (desplazamiento % 26 + 26) % 26; 
     return texto.replace(/[A-Z]/ig, c => letras[(letras.indexOf(c) + desplazamiento) % 26]);
 }
 
 function descifrar(texto, desplazamiento) {
     if (!texto) 
-        return ''; // No se recomienda que haya más de un punto de salida de la función
+        return '';
     const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    //Si aceptamos desplazamientos negativos, necesitamos hacerlo dos veces. Si no, sería:
-    //desplazamiento = desplazamiento % 26;
     desplazamiento = (desplazamiento % 26 - 26) % 26; 
     return texto.replace(/[A-Z]/ig, c => letras[(letras.indexOf(c) - desplazamiento) % 26]);
 }
@@ -40,21 +36,17 @@ function descifrar(texto, desplazamiento) {
 function cifrar2(texto, desplazamiento) {
     let resultado='';
     let letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    //Si aceptamos desplazamientos negativos, necesitamos hacerlo dos veces. Si no, sería:
-    //desplazamiento = desplazamiento % 26;
     desplazamiento = (desplazamiento % 26 + 26) % 26; 
     
     if (texto){
         for (let i=0; i<texto.length; ++i){
-            //Si la letra está en el array de letras (es un símbolo, un espacio...)
             if (letras.indexOf(texto[i])!=-1)
             { 
-                //almacenamos en c la posición de la letra más el desplazamiento y le aplicamos el módulo
                 let posicion=((letras.indexOf(texto[i])+desplazamiento) % 26);
                 resultado+=letras[posicion];
             }
             else
-                resultado+=texto[i]; // Números, espacios, símbolos... 
+                resultado+=texto[i];
         }
     }
     return resultado;
