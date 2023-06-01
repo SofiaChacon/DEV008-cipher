@@ -1,53 +1,29 @@
-window.addEventListener("load",inicio,true);
+import cipher from './cipher.js';
 
-function inicio(){
-    document.getElementById("mensaje").addEventListener("keyup", function(){
-        this.value = this.value.toUpperCase();
-    }, true);
-    
-    document.getElementById("cifrar").addEventListener("click",function(){  
-        let texto = document.getElementById("mensaje").value;
-        let desplazamiento = document.getElementById("desplazamiento").value;               
-        document.getElementById("mensaje2").value = cifrar2(texto, desplazamiento);
-    },true);
-    document.getElementById("descifrar").addEventListener("click",function(){  
-        let texto = document.getElementById("mensaje").value;
-        let desplazamiento = document.getElementById("desplazamiento").value;                               
-        document.getElementById("mensaje2").value = descifrar(texto, desplazamiento);
-    },true);
+document.getElementById("boton1").addEventListener("click", comenzarcipher)
+function comenzarcipher() {
+
+  document.getElementById("principal").style.display = "none";
+  document.getElementById("pantalla2").style.display = "block";
 }
 
-function cifrar(texto, desplazamiento) {
-    if (!texto) 
-        return '';
-    const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    desplazamiento = (desplazamiento % 26 + 26) % 26; 
-    return texto.replace(/[A-Z]/ig, c => letras[(letras.indexOf(c) + desplazamiento) % 26]);
+document.getElementById("refresh").addEventListener("click", princ)
+function princ() {
+  const refresh = document.getElementById('refresh');
+  refresh.addEventListener('click', () => {
+    location.reload();
+  })
+
+
 }
 
-function descifrar(texto, desplazamiento) {
-    if (!texto) 
-        return '';
-    const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    desplazamiento = (desplazamiento % 26 - 26) % 26; 
-    return texto.replace(/[A-Z]/ig, c => letras[(letras.indexOf(c) - desplazamiento) % 26]);
-}
-
-function cifrar2(texto, desplazamiento) {
-    let resultado='';
-    let letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    desplazamiento = (desplazamiento % 26 + 26) % 26; 
-    
-    if (texto){
-        for (let i=0; i<texto.length; ++i){
-            if (letras.indexOf(texto[i])!=-1)
-            { 
-                let posicion=((letras.indexOf(texto[i])+desplazamiento) % 26);
-                resultado+=letras[posicion];
-            }
-            else
-                resultado+=texto[i];
-        }
-    }
-    return resultado;
-}
+document.getElementById("cifrar").addEventListener("click", function () {
+  const texto = document.getElementById("mensaje").value;
+  const desplazamiento = document.getElementById("desplazamiento").value;
+  document.getElementById("mensaje2").value = cipher.encode(texto, desplazamiento);
+}, true);
+document.getElementById("descifrar").addEventListener("click", function () {
+  const texto = document.getElementById("mensaje").value;
+  const desplazamiento = document.getElementById("desplazamiento").value;
+  document.getElementById("mensaje2").value = cipher.decode(texto, desplazamiento);
+}, true);
